@@ -15,5 +15,8 @@ public interface UserService {
 	int join(HttpServletRequest request, HttpServletResponse response);
 	
 	int delete(HttpServletRequest request, HttpServletResponse response);
-
+	
+	int updateInfo(HttpServletRequest request, HttpServletResponse response);
+	
+	UserVO getInfo(HttpServletRequest request, HttpServletResponse response);
 }

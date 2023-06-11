@@ -18,33 +18,29 @@
 		
 		
 		<form action = "user_update.user" method = "post">
-			<table border = "1">
-				<tr>
-					<td>아이디</td>
-					<td><input type = "text" name = "id" value = "${vo.id}" readonly="readonly" ></td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type = "password" name = "pw" required="required" pattern="\w{4,}"></td>
-				</tr>
-				<tr>
-					<td>닉네임</td>
-					<td><input type = "text" name = "name" value = "${vo.name}"></td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><input type = "email" name = "email" value = "${vo.email}"></td>
-				</tr>
-				<tr>
-					<td>성별</td>
-					<td>
-					<input type = "radio" name = "gender" value = "M" ${vo.gender == 'M' ? 'checked' : '' }> 남자
-					<input type = "radio" name = "gender" value = "F" ${vo.gender == 'F' ? 'checked' : '' }> 여자
-					</td>
-				</tr>			
-			</table>
+				아 이 디 :
+				<input type = "text" name = "id" placeholder="아이디를 입력하세요" value = "${vo.id}" required="required" pattern = "\w{4,}" >
+					
+				<br/>
+				비밀번호:
+				<input type = "password" name = "pw"  required="required" style="width:175px" pattern="\w{4,}">
+				<br/>
+				닉 네 임 :
+				<input type = "text" name = "name" placeholder= "닉네임을 입력하세요" value = "${vo.name}" style="width:175px">
+				<br/>
+				
+				소개하기:
+				<input type = "text" name = "intro" placeholder="상태 메시지를 입력하세요" value = "${vo.intro}"style="width:180px;">
+				<br/>
+				<br/>
+				프로필 사진 변경하기  ↓           <br/><br/>
+				<div align="center">
+				<input type="file" name="photo" value="프로필사진">
+				<br/>
+				</div>
 			
-		
+			<div style = "color: red;">${msg}</div>
+			<br/>
 			
 			<input type = "submit" value = "정보수정">
 			<input type = "button" value = "회원페이지로 가기" onclick = "location.href = 'user_mypage.user'">

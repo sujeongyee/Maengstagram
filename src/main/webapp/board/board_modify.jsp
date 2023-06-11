@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file = "../include/header.jsp"%>
+
+
 <div align="center" class="div_center">
 	<h3>게시판 글 수정 페이지</h3>
 	<hr>
@@ -14,35 +16,26 @@
 	
 		
 		<table border="1" width="500">
-		
-			
-	
-			<%-- 
+
+
 			<tr>
-				<td>글 번호</td>
-				<td>${vo.bno}</td>
-			</tr> --%>
-			<tr>
-				<td>작성자</td>
-				<td><input type="text" name="writer" value="${vo.writer}" readonly></td>
-			</tr>
-			<tr>
-				<td>글 제목</td>
+				<td align="center">글 내용</td>
 				<td>
-					<input type="text" name="title" value="${vo.title}">
+					<textarea rows="10" style="width: 95%; color: ${empty param.content ? '#999' : '#000'};" name="content" onfocus="if (this.value === '본문을 입력하세요.') {this.value = ''; this.style.color = '#000';}" onblur="if (this.value === '') {this.value = '본문을 입력하세요.'; this.style.color = '#999';}">${empty param.content ? '본문을 입력하세요.' : param.content}</textarea>
+
 				</td>
 			</tr>
 			<tr>
-				<td>글 내용</td>
+				<td align="center" >사진</td>
 				<td>
-					<textarea rows="10" style="width: 95%;" name="content">${vo.content}
-					</textarea>
+					<input type="file" name="picture" size="45">
 				</td>
 			</tr>
+
 			<tr>
-				<td colspan="2">
-					<input type="submit" value="수정 하기" onclick="">&nbsp;&nbsp;
-					<input type="button" value="목록">        
+				<td colspan="2" align="center">
+					<input type="submit" value="수정하기" onclick="">&nbsp;&nbsp;
+					<input type="button" value="취소" onclick="location.href='../user/user_mypage.jsp'">
 				</td>
 			</tr>
 			
@@ -50,4 +43,6 @@
 	</form>
 	
 </div>
+
+
 <%@ include file = "../include/footer.jsp"%>

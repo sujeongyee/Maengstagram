@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 
 
 
+
+
+
 public class UserDAO {
 	
 	private static UserDAO instance = new UserDAO();
@@ -188,6 +191,83 @@ public class UserDAO {
 
 		return result;
 	}
+	
+	public UserVO getInfo(String id) {
+		UserVO vo = null;
+
+		String sql = "SELECT * FROM USERS WHERE USER_ID = ? ";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {			
+			conn = DriverManager.getConnection(url,uid,upw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);			
+			rs = pstmt.executeQuery();			
+			if(rs.next()) {
+				String id2 = rs.getString("user_id");
+				String name = rs.getString("user_nick");
+				String pw = rs.getString("user_pw");
+				String photo = rs.getString("user_photo");
+				String intro = rs.getString("user_intro");				
+				vo = new UserVO(id2,name,pw,photo,intro);				
+			}		
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원정보 조회 기능에서 오류가 발생했습니다.");
+		} finally {
+			try {				
+				conn.close();
+				pstmt.close();
+				rs.close();				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}		
+		return vo;
+	}
+	
+	
+	public int updateInfo (UserVO vo) {
+
+		String sql = "UPDATE USERS SET USER_PW = ? , USER_NAME = ? , USER_INTRO = ? , USER_PHOTO = ?  WHERE USER_ID = ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;	
+		int a = 0;
+
+
+		try {
+			conn = DriverManager.getConnection(url,uid,upw);
+			pstmt = conn.prepareStatement(sql);			
+			pstmt.setString(1, vo.getPw());
+			pstmt.setString(2, vo.getNick());
+			pstmt.setString(3, vo.getIntro());
+			pstmt.setString(4, vo.getPhoto());
+			pstmt.setString(5, vo.getId());
+
+
+			a = pstmt.executeUpdate(); // 성공시 1
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원정보 수정 과정에서 오류 발생!!!");
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+		return a;
+	}
+	
+	
 
 }
 

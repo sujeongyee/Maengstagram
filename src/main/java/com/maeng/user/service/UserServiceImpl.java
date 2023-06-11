@@ -70,6 +70,40 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
+	public UserVO getInfo(HttpServletRequest request, HttpServletResponse response) {
+
+		//아이디가 꼭 필요
+		//이전 화면에서 필요한 값을 넘겨주던 vs 회원아이디는 세션에 존재
+
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("user_id");
+
+		UserDAO dao = UserDAO.getInstance();
+
+		UserVO vo = dao.getInfo(id);
+
+		return vo;
+	}
+
+	@Override
+	public int updateInfo(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("id");
+		String name = request.getParameter("nick");
+		String pw = request.getParameter("pw");
+		String intro = request.getParameter("intro");
+		String photo = request.getParameter("photo");
+	
+
+
+		UserVO vo = new UserVO(id,name,pw,intro,photo);
+		UserDAO dao = UserDAO.getInstance();
+
+		int a = dao.updateInfo(vo);
+
+
+		return a;
+	}
+	
 	
 
 }

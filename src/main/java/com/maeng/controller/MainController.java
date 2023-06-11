@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.maeng.main.model.MainVO;
 import com.maeng.main.service.MainService;
 import com.maeng.main.service.MainServiceImpl;
+import com.maeng.user.model.UserVO;
 
 
 
@@ -42,7 +43,7 @@ public class MainController extends HttpServlet {
 		String conPath = request.getContextPath();
 		String command = uri.substring(conPath.length());
 		System.out.println(command);
-
+		HttpSession session = request.getSession();
 
 		//---------------------------------------------------
 		
@@ -50,7 +51,7 @@ public class MainController extends HttpServlet {
 		
 		if(command.equals("/main.main")) {
 			System.out.println("메인이동");
-			
+			UserVO vo = (UserVO)session.getAttribute("vo");
 			List<MainVO> list = service.getList(request, response);
 			request.setAttribute("list", list);
 			
