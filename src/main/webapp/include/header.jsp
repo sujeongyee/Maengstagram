@@ -67,17 +67,23 @@
                 <ul class="nav navbar-nav">
                    
                     <li>
-                        <a href="<%=request.getContextPath()%>/index.jsp">HOME</a> <!-- 메인화면 -->
+                        <a href="<%=request.getContextPath()%>/main.jsp">HOME</a> <!-- 메인화면 -->
                     </li>
                     <li>
                         <a href="<%=request.getContextPath()%>/member/member.jsp">SEARCH</a> <!--  -->
                     </li>
-                 
+                 	<li>
+                        <a href="<%=request.getContextPath()%>/board/board_write.board">Write</a>
+                    </li>
+                    
                     <li>
                         <a href="<%=request.getContextPath()%>/user/user_mypage.user">MYPAGE</a>
                     </li>
                    	<li>
                         <a href="<%=request.getContextPath()%>/user/user_logout.user" style="color:red">LOGOUT</a>
+                    </li>
+                    <li>
+                        <a href="<%=request.getContextPath()%>/user/user_delete.user">Delete</a>
                     </li>
                       	
                     

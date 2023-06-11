@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html>
 <html>
 <head>
 
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-idth, initial-scale=1">
    
@@ -13,36 +12,37 @@
     <title>Welcome to MyWorld</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
- 
+    <link href="css/bootstrap.css" rel="stylesheet">
+
     <!-- Custom CSS -->
-    <link href="<%=request.getContextPath()%>/css/business-casual.css" rel="stylesheet">
+    <link href="css/business-casual.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-   
-   <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/js/jquery.js"></script>
+	
+	<!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
     $('.carousel').carousel({
         interval: 2000 //changes the speed
     })
     </script>
-   <style>
-   .abc {
-      position: sticky;
-      top: 0px;
-      width: 100%; 
-      z-index: 10;
-   }
-   </style>
+	<style>
+	.abc {
+		position: sticky;
+		top: 0px;
+		width: 100%; 
+		z-index: 10;
+	}
+	</style>
     
     
 </head>
+
 <body>
 	<!-- header -->
 	<div class="brand">Maengstagram</div>        
@@ -70,52 +70,47 @@
         <!-- /.container -->
     </nav>
  	<!-- end header -->
+ 
+    <div class="container">
 
-<section>
-	<div align = "center"> <!-- 글자 가운데로 -->
+		<div class="row ">
+        	      	       
+            <div class="box">
+                                      
+                <section>
+					<div align = "center">
+						<br/>
+						<h3>WELCOME TO MAENGSTAGRAM !</h3>
+						<br/>
+							 <a href="<%=request.getContextPath()%>/user/user_login.user">로그인하기</a>
+							 
+							 <a href="<%=request.getContextPath()%>/user/user_join.user">회원가입하기</a>
+							
 		
-		<h3>회원 가입 !</h3>
-		<hr/>
-		
-
-		
-		<form action = "joinForm.user" method="post">
-			
-				
-					아 이 디 :
-					<input type = "text" name = "id" placeholder="아이디를 입력하세요" required="required" pattern = "\w{4,}" ">
-					
-					<br/>
-					비밀번호:
-					<input type = "password" name = "pw"  required="required" style="width:175px;" pattern="\w{4,}">
-					<br/>
-					닉 네 임 :
-					<input type = "text" name = "name" placeholder= "닉네임을 입력하세요" style="width:175px;">
-					<br/>
-					
-					소개하기:
-					<input type = "text" name = "intro" placeholder="상태 메시지를 입력하세요" style="width:180px;">
-					<br/>
-					<br/>
-					프로필 사진 불러오기  ↓           <br/><br/>
-					<div align="center">
-					<input type="file" name="photo" value="프로필사진">
-					<br/>
-					</div>
-			
-			<div style = "color: red;">${msg}</div>
-			<br/>
-			<input type = "submit" value = "가입">
-			<input type = "reset" value = "정보초기화">
-				
-		</form>	
-		
-		
-
-		
+	
 	</div>
 
 </section>
+	           
+               
+            </div>
+        </div>
 
-
-<%@ include file = "../include/footer.jsp"%>
+          
+    <!-- /.container -->
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; By Park 2018.XX.XX~</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+	
+	
+	
+</body>
+</html>
