@@ -77,7 +77,7 @@
                     </li>
                     
                     <li>
-                        <a href="<%=request.getContextPath()%>/user/user_mypage.user">MYPAGE</a>
+                        <a href="<%=request.getContextPath()%>/user/user_modify.user">MYPAGE</a>
                     </li>
                    	<li>
                         <a href="<%=request.getContextPath()%>/user/user_logout.user" style="color:red">LOGOUT</a>

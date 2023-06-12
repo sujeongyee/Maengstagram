@@ -70,10 +70,10 @@ public class UserController extends HttpServlet {
 			}else { // 로그인 성공				
 				session = request.getSession();
 				session.setAttribute("vo", vo);
-				
+
 				response.sendRedirect("../main.main"); // 홈화면
 			}
-			
+
 		} else if (command.equals("/user/user_join.user")) {
 			request.getRequestDispatcher("user_join.jsp").forward(request, response);
 		} else if (command.equals("/user/joinForm.user")) {
@@ -90,18 +90,18 @@ public class UserController extends HttpServlet {
 			}
 
 		} else if (command.equals("/user/user_logout.user")) {
-			
+
 			session.invalidate();
 			response.sendRedirect("../initial.jsp");
-			
+
 		} else if (command.equals("/user/user_delete.user")) {
-			
+
 			UserVO vo = (UserVO)session.getAttribute("vo");
 			session = request.getSession();
 			session.setAttribute("vo", vo);
 
 			int result = service.delete(request, response);
-			
+
 			if(result == 1) {
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out = response.getWriter();
@@ -117,15 +117,42 @@ public class UserController extends HttpServlet {
 				out.println("alert('회원 탈퇴 실패')");
 				out.println("location.href = '../initial.jsp';");
 				out.println("</script>");
-		
+
 			}			
+
+		}else if (command.equals("/user/user_modify.user")) { // ㅈㅓㅇㅂㅗㅅㅜㅈㅓㅇ
+
+			UserVO vo = service.getInfo(request, response);
+
+			request.setAttribute("vo", vo);
+
+			request.getRequestDispatcher("user_modify.jsp").forward(request, response);
+
+		}else if (command.equals("/user/user_update.user")) { // ㅈㅓㅇㅂㅗ
+	
+			int result = service.updateInfo(request,response);
 			
-		}else if (command.equals("index.user")) {
-			String id =(String) session.getAttribute("user_id");
-			System.out.println(id);
+			if(result == 0) { // 실패
+				response.sendRedirect("user_modify.user");
+				System.out.println("실패");
+			}else { // 성공
+				
+				String name = request.getParameter("name");
+				session.setAttribute("user_name", name);
+				
+				//out객체를 이용한 메시지 전달
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");				
+				out.println("alert('안녕하세요')");
+				out.println("location.href = 'user_mypage.user';");
+				out.println("</script>");
+				
+			}
+			
 		}
-		
-		
+
+
 
 
 

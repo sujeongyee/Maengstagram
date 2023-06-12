@@ -38,8 +38,7 @@
 		width: 100%; 
 		z-index: 10;
 	}
-	</style>
-    
+	</style>    
     
 </head>
 
@@ -60,11 +59,7 @@
                 
                 <a class="navbar-brand" href="/hong"></a>
             </div>
-           
-           
-            
-            
-            
+                       
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -83,16 +78,11 @@
 						<h3>WELCOME TO MAENGSTAGRAM !</h3>
 						<br/>
 							 <a href="<%=request.getContextPath()%>/user/user_login.user">로그인하기</a>
-							 
 							 <a href="<%=request.getContextPath()%>/user/user_join.user">회원가입하기</a>
-							
-		
 	
 	</div>
 
 </section>
-	           
-               
             </div>
         </div>
 
@@ -109,7 +99,6 @@
             </div>
         </div>
     </footer>
-	
 	
 	
 </body>
