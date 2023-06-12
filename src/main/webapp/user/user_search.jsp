@@ -18,10 +18,9 @@
     <link href="<%=request.getContextPath()%>/css/business-casual.css" rel="stylesheet">
 
     <!-- Fonts -->
-    <!-- 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-    -->
+   
    <!-- jQuery -->
     <script src="<%=request.getContextPath()%>/js/jquery.js"></script>
 
@@ -33,7 +32,6 @@
     })
     </script>
    <style>
-
    .abc {
       position: sticky;
       top: 0px;
@@ -41,23 +39,9 @@
       z-index: 10;
    }
    </style>
-   
-   <style>
-	 @font-face {
-    font-family: 'OSeongandHanEum';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OSeongandHanEum.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-	
-		h1, h2, h3, h4, h5, h6, body, * {
-			font-family: OSeongandHanEum
-		}
-	</style> 
     
     
 </head>
-
 <body>
 	<!-- header -->
 	<div class="brand"></div>        
@@ -85,52 +69,27 @@
         <!-- /.container -->
     </nav>
  	<!-- end header -->
- 
-    <div class="container">
 
-		<div class="row ">
-        	      	       
-            <div class="box">
-                         	             
-                <section>
-					<div align = "center">
-						<h3>💛WELCOME TO MAENGSTAGRAM💚</h3>
-						<hr/>
+<section>
+	<div align = "center" size = "50"> <!-- 글자 가운데로 -->
 		
-						<form action = "loginForm.user" method = "post">
-							<h3></h3><input type = "text" name = "id" placeholder ="아이디" >
-							<br/>
-							<input type = "password" name = "pw" placeholder = "비밀번호" ><br/>
-							<br/>
-							<input type = "submit" value = "로그인하기" >	
-							<input type = "button" value = "회원가입하기" onclick="location.href='user_join.user'">					
-						
-							<div style = "color: red;">${error}</div>
-						</form>
-	
+		<h3>SEARCH   ♡</h3>
+		<hr/>
+		
+		<br/>
+		
+		<p>아이디를 검색해주세요~ </p>
+		<br/>
+		<form action = "search.user" method="post">
+		<input type="text" name = "search_id" placeholder="검색할 아이디 입력!">
+		<input type = "submit" value = "검색하기">
+		
+				
+		</form>	
+		<br/>
+		<hr/>
+
+		
 	</div>
 
 </section>
-	           
-               
-            </div>
-        </div>
-
-          
-    <!-- /.container -->
-    </div>
-    
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p></p>
-                </div>
-            </div>
-        </div>
-    </footer>
-	
-	
-	
-</body>
-</html>

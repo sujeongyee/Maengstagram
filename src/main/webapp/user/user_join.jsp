@@ -45,7 +45,7 @@
 </head>
 <body>
 	<!-- header -->
-	<div class="brand">Maengstagram</div>        
+	<div class="brand"></div>        
     <div class="address-bar"></div>
     
     <nav class="navbar navbar-default abc" role="navigation">
@@ -74,27 +74,31 @@
 <section>
 	<div align = "center"> <!-- 글자 가운데로 -->
 		
-		<h3>회원 가입 !</h3>
+		<h3>join the membership</h3>
 		<hr/>
 		
 
 		
 		<form action = "joinForm.user" method="post">
+			<table border = "1">
 			
-				
-					아 이 디 :
-					<input type = "text" name = "id" placeholder="아이디를 입력하세요" required="required" pattern = "\w{4,}" ">
-					
-					<br/>
-					비밀번호:
-					<input type = "password" name = "pw"  required="required" style="width:175px;" pattern="\w{4,}">
-					<br/>
-					닉 네 임 :
-					<input type = "text" name = "name" placeholder= "닉네임을 입력하세요" style="width:175px;">
-					<br/>
-					
-					소개하기:
-					<input type = "text" name = "intro" placeholder="상태 메시지를 입력하세요" style="width:180px;">
+				<tr>
+					<td>아 이 디 </td>
+					<td><input type = "text" name = "id" placeholder="아이디를 입력하세요" required="required" pattern = "\w{4,}"></td>
+				</tr>	
+				<tr>	
+					<td>비밀번호</td>
+					<td><input type = "password" name = "pw"  required="required"  pattern="\w{4,}"></td>
+				</tr>
+				<tr>
+					<td>닉 네 임</td>
+					<td><input type = "text" name = "name" placeholder= "닉네임을 입력하세요" ></td>
+				</tr>
+				<tr>	
+					<td>소개하기</td>
+					<td><input type = "text" name = "intro" placeholder="상태 메시지를 입력하세요" ></td>
+				</tr>	
+					</table>
 					<br/>
 					<br/>
 					프로필 사진 불러오기  ↓           <br/><br/>
@@ -117,5 +121,3 @@
 
 </section>
 
-
-<%@ include file = "../include/footer.jsp"%>

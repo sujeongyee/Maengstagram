@@ -67,11 +67,19 @@ public class UserController extends HttpServlet {
 			if(vo == null) { // 로그인 실패
 				request.setAttribute("error", "로그인에 실패했습니다..");
 				request.getRequestDispatcher("user_login.jsp").forward(request, response);
+				
+				
 			}else { // 로그인 성공				
 				session = request.getSession();
 				session.setAttribute("vo", vo);
-
-				response.sendRedirect("../main.main"); // 홈화면
+				session.setAttribute("user_id", vo.getId());
+				
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");				
+				out.println("alert('방가방가')");
+				out.println("location.href = '../main.main';");
+				out.println("</script>");
 			}
 
 		} else if (command.equals("/user/user_join.user")) {
@@ -107,7 +115,7 @@ public class UserController extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.println("<script>");				
 				out.println("alert('회원 탈퇴 성공')");
-				out.println("location.href = '../index.jsp';");
+				out.println("location.href = '../main.main';");
 				out.println("</script>");
 				session.invalidate();
 			}else {
@@ -115,15 +123,23 @@ public class UserController extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.println("<script>");				
 				out.println("alert('회원 탈퇴 실패')");
-				out.println("location.href = '../initial.jsp';");
+				out.println("location.href = '/user/user_login.jsp';");
 				out.println("</script>");
 
-			}			
+			}
+			
 
-		}else if (command.equals("/user/user_modify.user")) { // ㅈㅓㅇㅂㅗㅅㅜㅈㅓㅇ
-
+		}else if(command.equals("/user/user_mypage.user")) {
+				
+			response.sendRedirect("/user/user_mypage.jsp");
+			
+		}
+		
+		
+		else if (command.equals("/user/user_modify.user")) { // ㅈㅓㅇㅂㅗㅅㅜㅈㅓㅇ
+			
+			System.out.println("도착");
 			UserVO vo = service.getInfo(request, response);
-
 			request.setAttribute("vo", vo);
 
 			request.getRequestDispatcher("user_modify.jsp").forward(request, response);
@@ -146,16 +162,22 @@ public class UserController extends HttpServlet {
 				out.println("<script>");				
 				out.println("alert('안녕하세요')");
 				out.println("location.href = 'user_mypage.user';");
-				out.println("</script>");
-				
-			}
+				out.println("</script>");			
+			}			
+		} else if (command.equals("/user/user_search.user")) {
 			
-		}
-
-
-
-
-
+			request.getRequestDispatcher("user_search.jsp").forward(request, response);
+			
+		} else if (command.equals("/user/search.user")) {
+			
+			String id = request.getParameter("search_id");
+			request.setAttribute("search_id", id);
+			request.getRequestDispatcher("찬한님이 만드시는 게시판으로 아이디 보내기!").forward(request, response);
+			
+		} 
+		
+		
+		
 	}
 
 

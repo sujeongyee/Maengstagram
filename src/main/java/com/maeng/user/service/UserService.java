@@ -3,6 +3,7 @@ package com.maeng.user.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.maeng.main.model.MainVO;
 import com.maeng.user.model.UserVO;
 
 
@@ -19,4 +20,7 @@ public interface UserService {
 	int updateInfo(HttpServletRequest request, HttpServletResponse response);
 	
 	UserVO getInfo(HttpServletRequest request, HttpServletResponse response);
+	
+	
+	
 }
