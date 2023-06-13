@@ -1,30 +1,41 @@
 package com.maeng.board.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class BoardVO {
 
-    private int number;
+    private String number;
+    private String id;
     private String content;
     private String img;
-    private Date time;
+    private Timestamp time;
 
     public BoardVO() {
     }
 
-    public BoardVO(int number, String content, String img, Date time) {
+    public BoardVO(String number, String id,String content, String img, Timestamp time) {
         this.number = number;
+        this.id = id;
         this.content = content;
         this.img = img;
         this.time = time;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getContent() {
@@ -43,11 +54,11 @@ public class BoardVO {
         this.img = img;
     }
 
-    public Date getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 

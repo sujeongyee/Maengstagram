@@ -1,9 +1,13 @@
 package com.maeng.user.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.maeng.board.model.BoardDAO;
+import com.maeng.board.model.BoardVO;
 import com.maeng.user.model.UserDAO;
 import com.maeng.user.model.UserVO;
 
@@ -103,6 +107,15 @@ public class UserServiceImpl implements UserService {
 
 		return a;
 	}
+	
+	@Override
+    public List<BoardVO> getlist(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String id = (String) session.getAttribute("user_id");
+        BoardDAO dao = BoardDAO.getInstance();
+        List<BoardVO> list = dao.getList(id);
+        return list;
+    }
 	
 	
 

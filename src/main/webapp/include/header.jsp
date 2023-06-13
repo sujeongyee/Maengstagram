@@ -19,9 +19,10 @@
     <link href="<%=request.getContextPath()%>/css/business-casual.css" rel="stylesheet">
 
     <!-- Fonts -->
+    <!-- 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-   
+    -->
    <!-- jQuery -->
     <script src="<%=request.getContextPath()%>/js/jquery.js"></script>
 
@@ -40,14 +41,27 @@
       z-index: 10;
    }
    </style>
-    
+   	
+	<style>
+	 @font-face {
+    font-family: 'OSeongandHanEum';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OSeongandHanEum.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+	
+		h1, h2, h3, h4, h5, h6, body, * {
+			font-family: OSeongandHanEum
+		}
+	</style> 
+   
     
 </head>
 
 <body>
    <!-- header -->
-   <div class="brand">My Web</div>        
-    <div class="address-bar">Welcome to MyWorld</div>
+   <div class="brand"></div>        
+    <div class="address-bar"><h1>Welcome to MAENGSTAGRAM</h1></div>
     
     <nav class="navbar navbar-default abc" role="navigation">
         <div class="container">
@@ -67,17 +81,17 @@
                 <ul class="nav navbar-nav">
                    
                     <li>
-                        <a href="<%=request.getContextPath()%>/main.jsp">HOME</a> <!-- 메인화면 -->
+                        <a href="<%=request.getContextPath()%>/main.main">HOME</a> <!-- 메인화면 -->
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath()%>/member/member.jsp">SEARCH</a> <!--  -->
+                        <a href="<%=request.getContextPath()%>/user/user_search.user">SEARCH</a> <!--  -->
                     </li>
                  	<li>
                         <a href="<%=request.getContextPath()%>/board/board_write.board">Write</a>
                     </li>
                     
                     <li>
-                        <a href="<%=request.getContextPath()%>/user/user_modify.user">MYPAGE</a>
+                        <a href="<%=request.getContextPath()%>/user/user_mypage.jsp">MYPAGE</a>
                     </li>
                    	<li>
                         <a href="<%=request.getContextPath()%>/user/user_logout.user" style="color:red">LOGOUT</a>

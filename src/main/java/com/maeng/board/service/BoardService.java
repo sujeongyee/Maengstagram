@@ -1,11 +1,10 @@
 package com.maeng.board.service;
 
+import com.maeng.board.model.BoardVO;
+import com.maeng.user.model.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.maeng.board.model.BoardVO;
-
 import java.util.List;
 
 public interface BoardService {
@@ -23,4 +22,9 @@ public interface BoardService {
     List<BoardVO> getlist(HttpServletRequest request, HttpServletResponse response);
 
 
+    int join(HttpServletRequest request, HttpServletResponse response);
+
+    UserVO login(HttpServletRequest request, HttpServletResponse response);
+
+    void delete(HttpServletRequest request, HttpServletResponse response);
 }

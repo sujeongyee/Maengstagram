@@ -10,6 +10,13 @@
 	<form action="writeForm.board" method="post">
 		<table border="1" width="500">
 
+<%--			<tr>--%>
+<%--				<td>ID</td>--%>
+<%--				<td>--%>
+<%--					<input type="text" name="writer" size="10" value="${sessionScope.ID}">--%>
+<%--				</td>--%>
+<%--			</tr>--%>
+
 			<tr>
 				<td align="center">글 내용</td>
 				<td>
@@ -20,7 +27,7 @@
 			<tr>
 				<td align="center" >사진</td>
 				<td>
-					<input type="file" name="picture" size="45">
+					<input type="file" name="img" size="45">
 				</td>
 			</tr>
 			<tr>

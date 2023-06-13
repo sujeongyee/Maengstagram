@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +40,8 @@
    }
    </style>
     
-     <style>
+    
+      <style>
 	 @font-face {
     font-family: 'OSeongandHanEum';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OSeongandHanEum.woff') format('woff');
@@ -84,52 +84,25 @@
  	<!-- end header -->
 
 <section>
-	<div align = "center"> <!-- 글자 가운데로 -->
+	<div align = "center" size = "50"> <!-- 글자 가운데로 -->
 		
-		<h3>join the membership</h3>
+		<h2>SEARCH   🔎</h2>
 		<hr/>
 		
-
+		<br/>
 		
-		<form action = "joinForm.user" method="post">
-			<table border = "1">
-			
-				<tr>
-					<td>아 이 디 </td>
-					<td><input type = "text" name = "id" placeholder="아이디를 입력하세요" required="required" pattern = "\w{4,}"></td>
-				</tr>	
-				<tr>	
-					<td>비밀번호</td>
-					<td><input type = "password" name = "pw"  required="required"  pattern="\w{4,}"></td>
-				</tr>
-				<tr>
-					<td>닉 네 임</td>
-					<td><input type = "text" name = "name" placeholder= "닉네임을 입력하세요" ></td>
-				</tr>
-				<tr>	
-					<td>소개하기</td>
-					<td><input type = "text" name = "intro" placeholder="상태 메시지를 입력하세요" ></td>
-				</tr>	
-					</table>
-					<br/>
-					<br/>
-					프로필 사진 불러오기  ↓           <br/><br/>
-					<div align="center">
-					<input type="file" name="photo" value="프로필사진">
-					<br/>
-					</div>
-			
-			<div style = "color: red;">${msg}</div>
-			<br/>
-			<input type = "submit" value = "가입">
-			<input type = "reset" value = "정보초기화">
+		<h5>아이디를 검색해주세요~ </h5>
+		<br/>
+		<form action = "search.user" method="post">
+		<input type="text" name = "search_id" placeholder="검색할 아이디 입력!">
+		<input type = "submit" value = "검색하기">
+		
 				
 		</form>	
-		
-		
+		<br/>
+		<hr/>
 
 		
 	</div>
 
 </section>
-

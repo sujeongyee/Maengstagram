@@ -10,11 +10,15 @@
     <table border="1" width="500">
         <tr>
             <td>ID</td>
-            <td></td>
+            <td>${vo.id}</td>
         </tr>
 
         <tr> <!--이미지-->
-            <td colspan="3" height="500px">${vo.img }</td>
+            <td colspan="3" height="300px" style="text-align: center;">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                    <img src="img/${vo.img}" alt="이미지1" style="max-width: 90%; max-height: 90%;">
+                </div>
+            </td>
         </tr>
 
         <tr>
@@ -26,19 +30,19 @@
 
         <tr>
             <td width="20%">글내용</td>
-            <td colspan="3" height="50px">${vo.content }</td>
+            <td colspan="3" height="50px">${vo.content}</td>
         </tr>
 
         <tr>
             <td>작성일</td>
-            <td>${vo.date }</td>
+            <td>${vo.time}</td>
         </tr>
 
         <tr>
             <td colspan="4" align="center">
-                <input type="button" value="목록" onclick="location.href='board_mainpage.board'">&nbsp;&nbsp;
-                <input type="button" value="수정" onclick="location.href='board_modify.board?bno=${vo.number}'">&nbsp;&nbsp;
-                <input type="button" value="삭제" onclick="location.href='board_delete.board?bno=${vo.number}'">&nbsp;&nbsp;
+                <input type="button" value="목록" onclick="location.href='<%=request.getContextPath()%>/user/user_mypage.user'">&nbsp;&nbsp;
+                <input type="button" value="수정" onclick="location.href='board_modify.board?number=${vo.number}&img=${vo.img}'">&nbsp;&nbsp;
+                <input type="button" value="삭제" onclick="location.href='board_delete.board?number=${vo.number}'">&nbsp;&nbsp;
             </td>
         </tr>
     </table>

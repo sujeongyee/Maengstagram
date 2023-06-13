@@ -39,7 +39,7 @@ public class UserDAO {
 	public UserVO login(String id , String pw) {
 
 		String sql = "SELECT * FROM USERS WHERE USER_ID = ? AND USER_PW = ?";
-		System.out.println(id);
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -58,7 +58,6 @@ public class UserDAO {
 				String nick = rs.getString("user_nick");
 				String uPhoto = rs.getString("user_photo");
 				String intro = rs.getString("user_intro");
-				System.out.println(nick + " " + uPhoto + " "+ intro);
 				vo = new UserVO(id,nick,pw,uPhoto,intro);
 
 			} 
