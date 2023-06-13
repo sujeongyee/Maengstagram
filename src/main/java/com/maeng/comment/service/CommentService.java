@@ -9,7 +9,7 @@ import com.maeng.comment.model.CommentVO;
 
 
 public interface CommentService {
-		
+
 	public void registComment(HttpServletRequest request, HttpServletResponse response);
 
 }

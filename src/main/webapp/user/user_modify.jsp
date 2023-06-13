@@ -4,7 +4,9 @@
 
 <section>
 	<div align = "center">
+
 		<h3>회원 정보 수정</h3>
+
 		<hr/>
 		<br/>
 		<b>${sessionScope.user_id}님 회원 정보를 수정합니다</b>

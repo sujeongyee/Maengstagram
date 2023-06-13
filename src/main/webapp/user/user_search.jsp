@@ -40,7 +40,7 @@
    }
    </style>
     
-    
+
       <style>
 	 @font-face {
     font-family: 'OSeongandHanEum';
@@ -53,7 +53,7 @@
 			font-family: OSeongandHanEum
 		}
 	</style> 
-    
+
 </head>
 <body>
 	<!-- header -->
@@ -86,12 +86,16 @@
 <section>
 	<div align = "center" size = "50"> <!-- 글자 가운데로 -->
 		
+
 		<h2>SEARCH   🔎</h2>
+
 		<hr/>
 		
 		<br/>
 		
+
 		<h5>아이디를 검색해주세요~ </h5>
+
 		<br/>
 		<form action = "search.user" method="post">
 		<input type="text" name = "search_id" placeholder="검색할 아이디 입력!">

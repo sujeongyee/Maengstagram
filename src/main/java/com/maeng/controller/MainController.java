@@ -1,7 +1,9 @@
 package com.maeng.controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +58,7 @@ public class MainController extends HttpServlet {
 
 		if(command.equals("/main.main")) {
 			UserVO vo = (UserVO)session.getAttribute("vo");
+
 			if(vo==null) {
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out = response.getWriter();
@@ -67,7 +70,6 @@ public class MainController extends HttpServlet {
 			}
 
 			System.out.println("메인이동");
-
 			String user_id = vo.getId();
 			session.setAttribute("user_id", user_id);
 			List<MainVO> list = service.getList(request, response);
@@ -91,6 +93,7 @@ public class MainController extends HttpServlet {
 			request.getRequestDispatcher("/main.main").forward(request, response);
 
 		}   else if (command.equals("/likeUpdate.main")) {
+
 
 			int result = service.checkLike(request, response);
 			String post_num2 = request.getParameter("post_num");
@@ -118,6 +121,20 @@ public class MainController extends HttpServlet {
 				System.out.println("중볽임");
 				request.getRequestDispatcher("/main.main").forward(request, response);
 			}
+
+			System.out.println("들어와랏");
+			String user_id = (String)session.getAttribute("user_id");
+
+
+			System.out.println(request.getParameter("post_num"));
+			System.out.println(user_id);
+
+			service.like(request, response);
+			service.likeUpdate(request, response);
+			request.setAttribute("msg","좋아용!👄");   
+
+			request.getRequestDispatcher("/main.main").forward(request, response);
+
 		}else if(command.equals("/regist_comment.main")){
 
 			System.out.println("도착@");
@@ -130,6 +147,7 @@ public class MainController extends HttpServlet {
 
 	}
 
+}
 
 
 

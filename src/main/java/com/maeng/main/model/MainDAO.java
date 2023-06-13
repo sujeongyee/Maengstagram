@@ -136,6 +136,7 @@ public class MainDAO {
 			}
 		}
 	}
+
 	
 	public int checkLike(String id, String post_num) {
 
@@ -179,6 +180,7 @@ public class MainDAO {
 		
 		return result;
 	}
+
 
 
 

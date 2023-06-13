@@ -94,7 +94,11 @@
                          	             
                 <section>
 					<div align = "center">
+
 						<h1>💛WELCOME TO MAENGSTAGRAM💚</h1>
+
+
+
 						<hr/>
 		
 						<form action = "loginForm.user" method = "post">

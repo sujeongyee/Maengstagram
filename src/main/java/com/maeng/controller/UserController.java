@@ -129,7 +129,7 @@ public class UserController extends HttpServlet {
 				out.println("</script>");
 
 			}
-			
+
 
 		}else if(command.equals("/user/user_mypage.user")) {
 				
@@ -140,10 +140,9 @@ public class UserController extends HttpServlet {
 			request.setAttribute("list", list);
 
 			request.getRequestDispatcher("user_mypage.jsp").forward(request, response);
-			
+
 		}
-		
-		
+				
 		else if (command.equals("/user/user_modify.user")) { // ㅈㅓㅇㅂㅗㅅㅜㅈㅓㅇ
 			
 			System.out.println("도착");

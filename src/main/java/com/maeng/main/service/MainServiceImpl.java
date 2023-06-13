@@ -45,6 +45,7 @@ public class MainServiceImpl implements MainService {
 		System.out.println("좋아요 수 증가");
 
 	}
+
 	
 	@Override
 	public int checkLike(HttpServletRequest request, HttpServletResponse response) {
@@ -55,6 +56,7 @@ public class MainServiceImpl implements MainService {
 		int a =dao.checkLike(user_id, post_num); System.out.println(a);
 		return a;
 	}
+
 
 
 }

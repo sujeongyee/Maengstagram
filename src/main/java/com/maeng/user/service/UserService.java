@@ -5,7 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.maeng.board.model.BoardVO;
+
 import com.maeng.main.model.MainVO;
 import com.maeng.user.model.UserVO;
 
@@ -23,7 +25,8 @@ public interface UserService {
 	int updateInfo(HttpServletRequest request, HttpServletResponse response);
 	
 	UserVO getInfo(HttpServletRequest request, HttpServletResponse response);
-	
+
 	List<BoardVO> getlist(HttpServletRequest request, HttpServletResponse response);
+
 	
 }
