@@ -44,9 +44,7 @@
             </div>
         </c:forEach>
     </div>
-    <br/><br/><br/><br/><br/><hr/>
-
-    <div class="center-content">
+    <br/><br/><div class="center-content">
         <c:if test="${empty list}">
             <div class="no-posts">
                 <div class="no-posts-content">
@@ -57,7 +55,9 @@
             </div>
         </c:if>
     </div>
-</div>
+</div><br/><br/><br/><hr/>
+
+    
 
 <style>
     .profile-header {

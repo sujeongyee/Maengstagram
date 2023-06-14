@@ -21,12 +21,7 @@ public interface BoardService {
     // 게시글 목록 불러오기
     List<BoardVO> getlist(HttpServletRequest request, HttpServletResponse response);
 
-
-    int join(HttpServletRequest request, HttpServletResponse response);
-
-    UserVO login(HttpServletRequest request, HttpServletResponse response);
-
-    void delete(HttpServletRequest request, HttpServletResponse response);
+    
     
     
  // (메인화면의 좋아요 누를시 like테이블에 id추가)
@@ -45,5 +40,14 @@ public interface BoardService {
 
 	// 좋아요 -1 
 	void BoardLikeDel(HttpServletRequest request, HttpServletResponse response);
+	
+	
+//  1 . like 지우기
+	void delLikes(HttpServletRequest request, HttpServletResponse response);
+	//  2. 댓글지우기
+	void delComments(HttpServletRequest request, HttpServletResponse response);
+	//  3. 게시글지우기
+	void delPost(HttpServletRequest request, HttpServletResponse response);
+	
  	
 }

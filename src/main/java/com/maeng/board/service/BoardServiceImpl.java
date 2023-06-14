@@ -62,23 +62,8 @@ public class BoardServiceImpl implements BoardService{
 		return list;
 	}
 
-	@Override
-	public int join(HttpServletRequest request, HttpServletResponse response) {
-		return 0;
-	}
 
-	@Override
-	public UserVO login(HttpServletRequest request, HttpServletResponse response) {
-		return null;
-	}
 
-	@Override
-	public void delete(HttpServletRequest request, HttpServletResponse response) {
-		String number = request.getParameter("number");
-
-		BoardDAO dao = BoardDAO.getInstance();
-		dao.delete(number);
-	}
 
 	@Override //좋아요  아이디추가
 	public void BoardLikeUpdate(HttpServletRequest request, HttpServletResponse response) {
@@ -135,5 +120,33 @@ public class BoardServiceImpl implements BoardService{
 
 
 	}
+	
+	
+	// 게시물삭제 1단계
+		@Override
+		public void delLikes(HttpServletRequest request, HttpServletResponse response) {
+			String number= request.getParameter("number");
+			BoardDAO dao = BoardDAO.getInstance();
+			dao.delLikes(number);
+			System.out.println("postDel 1번 like 게시물번호"+number);
+		}
+		// 게시물삭제 2단계
+		@Override
+		public void delComments(HttpServletRequest request, HttpServletResponse response) {
+			String number= request.getParameter("number");
+			BoardDAO dao = BoardDAO.getInstance();
+			dao.delComments(number);
+			System.out.println("postDel 2번 commen 게시물번호 :"+number);
+		}
+		// 게시물삭제 3단계
+		@Override
+		public void delPost(HttpServletRequest request, HttpServletResponse response) {
+			String number= request.getParameter("number");
+			BoardDAO dao = BoardDAO.getInstance();
+			dao.delPost(number);
+			System.out.println("postDel 3번 최종삭제 게시물번호 :"+number);
+		}
+
+
 
 }
