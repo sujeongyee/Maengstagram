@@ -29,7 +29,7 @@ public class CommentDAO {
 		
 		String sql = "SELECT * \r\n"
 				+ "FROM COMMENTS\r\n"
-				+ "WHERE POST_NUM = ?";
+				+ "WHERE POST_NUM = ? ORDER BY COM_TIME DESC";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -91,5 +91,37 @@ public class CommentDAO {
 		
 	}
 	
-
+	public int deleteComment(int com_num) {
+		
+		String sql = "DELETE FROM COMMENTS WHERE COM_NUM = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		
+		try {
+			conn = DriverManager.getConnection(url,uid,upw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, com_num);
+			
+			result = pstmt.executeUpdate(); //1이면 성공 0이면 실패
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("댓글 삭제 중 오류발생!");
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
+				
+			}
+		}
+				
+		
+		return 0;
+	}
 }

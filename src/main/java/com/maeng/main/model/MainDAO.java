@@ -28,7 +28,7 @@ public class MainDAO {
 
 	//--------------------------------------------------------
 
-	public List<MainVO> getList(String user_id) {
+	public List<MainVO> getList(String id) {
 
 		List<MainVO> list = new ArrayList<>();
 		Connection conn = null;
@@ -44,7 +44,7 @@ public class MainDAO {
 
 			conn = DriverManager.getConnection(url,uid,upw);
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, user_id);
+			pstmt.setString(1, id);
 
 			rs = pstmt.executeQuery();
 
@@ -56,8 +56,8 @@ public class MainDAO {
 				String post_content = rs.getString("post_content");
 				int post_like = rs.getInt("post_like"); 
 				Timestamp post_time = rs.getTimestamp("post_time");
-				String post_num = rs.getString("post_num");
-				MainVO vo = new MainVO( user_photo, fol_id,post_img,post_content, post_like, post_time,post_num);
+				String number = rs.getString("post_num");
+				MainVO vo = new MainVO( user_photo, fol_id,post_img,post_content, post_like, post_time,number);
 				list.add(vo);
 			}
 
@@ -79,18 +79,17 @@ public class MainDAO {
 
 
 	// 좋아요 수 업데이트 시 / like table에 이름추가 
-	public void likeUpdate(String post_num, String user_id) {
+	public void likeUpdate(String number, String id) {
 		String sql = "INSERT INTO LIKES VALUES (?, ?)";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		System.out.println("likeUpdate");
 
 		try {
 			conn = DriverManager.getConnection(url, uid, upw);
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, post_num);
-			pstmt.setString(2, user_id);
+			pstmt.setString(1, number);
+			pstmt.setString(2, id);
 
 
 			pstmt.executeUpdate();
@@ -109,9 +108,9 @@ public class MainDAO {
 
 	// like likeUpate 실행시 post테이블의 좋아요수 +1 하는 메서드
 
-	public void like(String post_num) {
+	public void like(String number) {
 		String sql = "update post set post_like = post_like + 1 where post_num = ?";
-		System.out.println("like");
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -119,7 +118,7 @@ public class MainDAO {
 		try {
 			conn = DriverManager.getConnection(url, uid, upw);
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, post_num);
+			pstmt.setString(1, number);
 
 			pstmt.executeUpdate();
 
@@ -137,8 +136,8 @@ public class MainDAO {
 		}
 	}
 
-	
-	public int checkLike(String id, String post_num) {
+	//좋아요 중복
+	public int checkLike(String id, String number) {
 
 		String sql = "select * from likes where user_id = ?  and post_num =  ? ";
 		
@@ -152,7 +151,7 @@ public class MainDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, id);
-			pstmt.setString(2, post_num);
+			pstmt.setString(2, number);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) { // 중복
@@ -179,6 +178,65 @@ public class MainDAO {
 		}
 		
 		return result;
+	}
+
+	public void likeDelId(String number, String id) {
+		String sql = "delete from likes where post_num= ? and user_id = ? ";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = DriverManager.getConnection(url, uid, upw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, number);
+			pstmt.setString(2, id);
+
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("likeDelId오류");
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	
+	
+	
+	//좋아요 -1 메서드
+	
+		public void likeDel(String number) {
+			String sql = "update post set post_like = post_like -1 where post_num =?";
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+
+
+			try {
+				conn = DriverManager.getConnection(url, uid, upw);
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, number);
+
+				pstmt.executeUpdate();
+
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("likeDel오류");
+			} finally {
+				try {
+					conn.close();
+					pstmt.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
 	}
 
 

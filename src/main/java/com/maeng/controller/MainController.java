@@ -48,35 +48,23 @@ public class MainController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String command = uri.substring(conPath.length());
-		System.out.println(command);
 		HttpSession session = request.getSession();
-
+		System.out.println(command);
 		//---------------------------------------------------
 
 		MainService service = new MainServiceImpl();
 		CommentService service2 = new CommentServiceImpl();
 
 		if(command.equals("/main.main")) {
+
 			UserVO vo = (UserVO)session.getAttribute("vo");
-
-			if(vo==null) {
-				response.setContentType("text/html; charset=utf-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>");				
-				out.println("alert('로그인 먼저 하고오세요~')");
-				out.println("location.href = 'user/user_login.jsp';");
-				out.println("</script>");
-				return;
-			}
-
-			System.out.println("메인이동");
-			String user_id = vo.getId();
-			session.setAttribute("user_id", user_id);
+			String id = vo.getId();
+			session.setAttribute("id", id);
 			List<MainVO> list = service.getList(request, response);
 			CommentDAO dao = CommentDAO.getInstance();
 			List<List<CommentVO>> list2 = new ArrayList<>(); 
 			for(MainVO vo2 :list) {				
-				List<CommentVO> voo = dao.getComment(vo2.getPost_num());
+				List<CommentVO> voo = dao.getComment(vo2.getNumber());
 				list2.add(voo);
 			}
 			request.setAttribute("list2", list2);
@@ -88,60 +76,44 @@ public class MainController extends HttpServlet {
 
 		} else if(command.equals("/regist_comment.main")){
 
-			System.out.println("도착@");
+
 			service2.registComment(request, response);
 			request.getRequestDispatcher("/main.main").forward(request, response);
 
-		}   else if (command.equals("/likeUpdate.main")) {
 
-
+			// 좋아요 업데이트	
+		}  else if (command.equals("/likeUpdate.main")) {
 			int result = service.checkLike(request, response);
-			String post_num2 = request.getParameter("post_num");
-			System.out.println("post_num2222값은"+ post_num2);
 
 			//중복검사
-			if(result == 0 ) {
+			if(result == 0) {
 
-				System.out.println("중복없음");
-				String user_id = (String)session.getAttribute("user_id");
-				System.out.println(request.getParameter("post_num"));
-				System.out.println(user_id);
 
 				service.like(request, response);
 				service.likeUpdate(request, response);
-				request.setAttribute("msg","좋아용!👄");	
+				request.setAttribute("msg","❤");	
 				request.getRequestDispatcher("/main.main").forward(request, response);
 
 
+			} else{
 
-			} else {
 
-				request.setAttribute("post_num2",post_num2);
-				request.setAttribute("msg2", "좋아요는 한번만!😁");
-				System.out.println("중볽임");
+				service.likeDel(request, response);
+				service.likeDelId(request, response);
+
+				request.setAttribute("msg","🤍");	
 				request.getRequestDispatcher("/main.main").forward(request, response);
+
+
 			}
-
-			System.out.println("들어와랏");
-			String user_id = (String)session.getAttribute("user_id");
+		}else if(command.equals("/board/regist_comment.main")){
 
 
-			System.out.println(request.getParameter("post_num"));
-			System.out.println(user_id);
-
-			service.like(request, response);
-			service.likeUpdate(request, response);
-			request.setAttribute("msg","좋아용!👄");   
-
-			request.getRequestDispatcher("/main.main").forward(request, response);
-
-		}else if(command.equals("/regist_comment.main")){
-
-			System.out.println("도착@");
+			String post_num = request.getParameter("post_num");
 			service2.registComment(request, response);
-			request.getRequestDispatcher("/main.main").forward(request, response);
+			request.getRequestDispatcher("/board/board_content.board?post_num="+post_num).forward(request, response);
 
-		}
+		}  
 
 
 
@@ -150,5 +122,3 @@ public class MainController extends HttpServlet {
 }
 
 
-
-}

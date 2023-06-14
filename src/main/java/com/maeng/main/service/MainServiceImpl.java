@@ -16,9 +16,9 @@ public class MainServiceImpl implements MainService {
 	public List<MainVO> getList(HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("user_id");
+		String id = (String)session.getAttribute("id");
 		MainDAO dao = MainDAO.getInstance();
-		List<MainVO> list = dao.getList(user_id);
+		List<MainVO> list = dao.getList(id);
 
 		return list;
 	}
@@ -26,23 +26,23 @@ public class MainServiceImpl implements MainService {
 	@Override //좋아요 
 	public void likeUpdate(HttpServletRequest request, HttpServletResponse response) {
 
-		String post_num = request.getParameter("post_num");
+		String number = request.getParameter("number");
 		HttpSession session = request.getSession();
-		String user_id=(String)session.getAttribute("user_id");
+		String id=(String)session.getAttribute("id");
 		MainDAO dao = MainDAO.getInstance();
 
-		dao.likeUpdate(post_num, user_id);
+		dao.likeUpdate(number, id);
 
-		System.out.println(post_num + " "+user_id);
+	
 	}
 
 	@Override
 	public void like(HttpServletRequest request, HttpServletResponse response) {
-		String post_num = request.getParameter("post_num");
+		String number= request.getParameter("number");
 		MainDAO dao = MainDAO.getInstance();
-		dao.like(post_num);
-		System.out.println(post_num);
-		System.out.println("좋아요 수 증가");
+		dao.like(number);
+
+
 
 	}
 
@@ -50,13 +50,36 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int checkLike(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		String user_id =(String) session.getAttribute("user_id");
-		String post_num = request.getParameter("post_num");
+		String id =(String) session.getAttribute("user_id");
+		String number = request.getParameter("number");
 		MainDAO dao = MainDAO.getInstance();
-		int a =dao.checkLike(user_id, post_num); System.out.println(a);
+		int a =dao.checkLike(id, number); 
 		return a;
 	}
+	
+	@Override
+	public void likeDelId(HttpServletRequest request, HttpServletResponse response) {
+		String number = request.getParameter("number");
+		HttpSession session = request.getSession();
+		String id=(String)session.getAttribute("id");
+		MainDAO dao = MainDAO.getInstance();
+		dao.likeDelId(number, id);
 
+		
+		
+		
+	}
+	
+	//좋아요 -1 메서드
+	@Override
+	public void likeDel(HttpServletRequest request, HttpServletResponse response) {
+		String number= request.getParameter("number");
+		MainDAO dao = MainDAO.getInstance();
+		dao.likeDel(number);
+
+
+		
+	}
 
 
 }

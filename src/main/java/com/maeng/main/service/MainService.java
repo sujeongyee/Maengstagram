@@ -19,9 +19,13 @@ public interface MainService {
 	//(메인화면에 좋아요 누를시 post테이블 like 횟수 증가)
 	void like(HttpServletRequest request, HttpServletResponse response);
 
-	
-	int checkLike(HttpServletRequest request, HttpServletResponse response);
-	
 
+	int checkLike(HttpServletRequest request, HttpServletResponse response);
+
+	// 좋아요 한번 더를시 id 삭제
+	void likeDelId(HttpServletRequest request, HttpServletResponse response); 
+
+	// 좋아요 -1 
+	void likeDel(HttpServletRequest request, HttpServletResponse response);
 
 }

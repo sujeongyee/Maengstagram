@@ -27,4 +27,23 @@ public interface BoardService {
     UserVO login(HttpServletRequest request, HttpServletResponse response);
 
     void delete(HttpServletRequest request, HttpServletResponse response);
+    
+    
+ // (메인화면의 좋아요 누를시 like테이블에 id추가)
+ 	void BoardLikeUpdate(HttpServletRequest request, HttpServletResponse response); 
+
+ 	//(메인화면에 좋아요 누를시 post테이블 like 횟수 증가)
+ 	void BoardLike(HttpServletRequest request, HttpServletResponse response);
+
+ 	//좋아요 중복체크
+ 	int BoardCheckLike(HttpServletRequest request, HttpServletResponse response);
+ 	
+    
+
+	// 좋아요 한번 더를시 id 삭제
+	void BoardLikeDelId(HttpServletRequest request, HttpServletResponse response); 
+
+	// 좋아요 -1 
+	void BoardLikeDel(HttpServletRequest request, HttpServletResponse response);
+ 	
 }

@@ -21,14 +21,14 @@ public class BoardDAO {
         return instance;
     }
 
-    private String url = "jdbc:oracle:thin:@172.30.1.38:1521:xe";
-    private String uid = "JSP";
-    private String upw = "JSP";
+    private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    private String uid = "PRO";
+    private String upw = "PRO";
 
-
+    
     // 게시글 쓰기
     public void write(String id, String content, String img) {
-        String sql = "INSERT INTO post VALUES(post_SEQ.NEXTVAL, ? ,?, ?, SYSDATE)";
+        String sql = "INSERT INTO post VALUES(POST_SEQ.NEXTVAL, ? ,?, ?, SYSDATE,0)";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -65,9 +65,7 @@ public class BoardDAO {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        System.out.println(number);
-        System.out.println(img);
-        System.out.println(content);
+       
         try {
             conn = DriverManager.getConnection(url, uid, upw);
             pstmt = conn.prepareStatement(sql);
@@ -115,8 +113,9 @@ public class BoardDAO {
                 String content = rs.getString("post_content");
                 String img = rs.getString("post_img");
                 Timestamp time = rs.getTimestamp("post_time");
+                int post_like = rs.getInt("post_like");
 
-                BoardVO voo = new BoardVO(number, id2, content, img, time);
+                BoardVO voo = new BoardVO(number, id2, content, img, time,post_like);
                 list.add(voo); // list에 추가
             }
 
@@ -158,9 +157,10 @@ public class BoardDAO {
                 String content = rs.getString("post_content");
                 String img = rs.getString("post_img");
                 Timestamp time = rs.getTimestamp("post_time");
+                int post_like = rs.getInt("post_like");
 
-                vo = new BoardVO(number2, id1, content, img, time);
-                System.out.println(vo.getImg());
+                vo = new BoardVO(number2, id1, content, img, time,post_like);
+     
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -200,5 +200,174 @@ public class BoardDAO {
         }
 
     }
+    
+    
+    public void BoardLikeUpdate(String number, String id) {
+		String sql = "INSERT INTO LIKES VALUES (?, ?)";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+
+		try {
+			conn = DriverManager.getConnection(url, uid, upw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, number);
+			pstmt.setString(2, id);
+
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("게시글 좋아요수 업데이트 하다가 오류발생");
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	// like likeUpate 실행시 post테이블의 좋아요수 +1 하는 메서드
+
+	public void BoardLike(String number) {
+		String sql = "update post set post_like = post_like + 1 where post_num = ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+
+		try {
+			conn = DriverManager.getConnection(url, uid, upw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, number);
+
+			pstmt.executeUpdate();
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("게시글 좋아요 오류 발생");
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	//좋아요 중복
+	public int BoardCheckLike(String id, String post_num) {
+		
+		String sql = "select * from likes where user_id = ?  and post_num =  ? ";
+		
+		int result = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		
+		try {
+			conn = DriverManager.getConnection(url,uid,upw);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setString(2, post_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { // 중복
+				result = 1;
+				
+			}else {
+				result = 0;
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("좋아요 여부 검사 중 오류 발생(Board)");
+		} finally {
+			
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
+				
+			}
+			
+		}
+		
+		return result;
+	}
+
+	//좋아요 1번더 누를시 아이디삭제기능
+			public void BoardLikeDelId(String number, String id) {
+				String sql = "delete from likes where post_num= ? and user_id = ? ";
+
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+		
+
+				try {
+					conn = DriverManager.getConnection(url, uid, upw);
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, number);
+					pstmt.setString(2, id);
+
+
+					pstmt.executeUpdate();
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("좋아요 취소 중 오류 발생 (board)");
+				} finally {
+					try {
+						conn.close();
+						pstmt.close();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+			}
+
+			
+			
+			
+			//좋아요 -1 메서드
+			
+				public void BoardLikeDel(String number) {
+					String sql = "update post set post_like = post_like -1 where post_num =?";
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+
+
+					try {
+						conn = DriverManager.getConnection(url, uid, upw);
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, number);
+
+						pstmt.executeUpdate();
+
+
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println("likeDel오류");
+					} finally {
+						try {
+							conn.close();
+							pstmt.close();
+						} catch (Exception e2) {
+							e2.printStackTrace();
+						}
+					}
+				}
+
+
+		    
+
+
 
 }

@@ -43,6 +43,7 @@
    </style>
    	
 	<style>
+	
 	 @font-face {
     font-family: 'OSeongandHanEum';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OSeongandHanEum.woff') format('woff');
@@ -53,6 +54,7 @@
 		h1, h2, h3, h4, h5, h6, body, * {
 			font-family: OSeongandHanEum
 		}
+		
 	</style> 
    
     
@@ -62,7 +64,7 @@
    <!-- header -->
    <div class="brand"></div>        
 
-    <div class="address-bar"><h1>Welcome to MAENGSTAGRAM</h1></div>
+    <div class="address-bar"><h1>MAENGSTAGRAM</h1></div>
 
     
     <nav class="navbar navbar-default abc" role="navigation">
@@ -89,18 +91,16 @@
                         <a href="<%=request.getContextPath()%>/user/user_search.user">SEARCH</a> <!--  -->
                     </li>
                  	<li>
-                        <a href="<%=request.getContextPath()%>/board/board_write.board">Write</a>
+                        <a href="<%=request.getContextPath()%>/board/board_write.jsp">Write</a>
                     </li>
                     
                     <li>
-                        <a href="<%=request.getContextPath()%>/user/user_mypage.jsp">MYPAGE</a>
+                        <a href="<%=request.getContextPath()%>/user/user_mypage.user">MYPAGE</a>
                     </li>
                    	<li>
                         <a href="<%=request.getContextPath()%>/user/user_logout.user" style="color:red">LOGOUT</a>
                     </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/user/user_delete.user">Delete</a>
-                    </li>
+                  
                       	
                     
                     

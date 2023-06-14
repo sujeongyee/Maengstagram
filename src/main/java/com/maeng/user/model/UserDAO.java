@@ -231,23 +231,22 @@ public class UserDAO {
 	
 	public int updateInfo (UserVO vo) {
 
-		String sql = "UPDATE USERS SET USER_PW = ? , USER_NAME = ? , USER_INTRO = ? , USER_PHOTO = ?  WHERE USER_ID = ?";
+		String sql = "UPDATE USERS SET USER_PW = ? , USER_NICK = ? , USER_PHOTO = ?, USER_INTRO = ?  WHERE USER_ID = ?";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;	
 		int a = 0;
-
-
+				
 		try {
 			conn = DriverManager.getConnection(url,uid,upw);
 			pstmt = conn.prepareStatement(sql);			
 			pstmt.setString(1, vo.getPw());
 			pstmt.setString(2, vo.getNick());
-			pstmt.setString(3, vo.getIntro());
-			pstmt.setString(4, vo.getPhoto());
+			pstmt.setString(3, vo.getPhoto());
+			pstmt.setString(4, vo.getIntro());			
 			pstmt.setString(5, vo.getId());
 
-
+			
 			a = pstmt.executeUpdate(); // 성공시 1
 
 		} catch (Exception e) {

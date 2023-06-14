@@ -47,7 +47,6 @@ public class UserServiceImpl implements UserService {
 		UserDAO dao =UserDAO.getInstance();
 		int result = dao.checkId(id);
 
-		System.out.println("결과 : "+result);
 
 		if(result == 1) { // 중복
 			return 1;
@@ -67,7 +66,7 @@ public class UserServiceImpl implements UserService {
 		UserVO vo = (UserVO)session.getAttribute("vo");
 		String id = vo.getId();
 		UserDAO dao = UserDAO.getInstance();
-		System.out.println("userserviceImplㅇㅔㅅㅓㅇㅡㅣ "+id);
+
 		int result = dao.delete(id);
 
 	
@@ -88,21 +87,41 @@ public class UserServiceImpl implements UserService {
 
 		return vo;
 	}
+	
+	public UserVO getInfo2(HttpServletRequest request, HttpServletResponse response) {
+
+		
+
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("search_id");
+
+		UserDAO dao = UserDAO.getInstance();
+
+		UserVO vo = dao.getInfo(id);
+
+		return vo;
+	}
 
 	@Override
 	public int updateInfo(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO)session.getAttribute("vo");
 		String id = request.getParameter("id");
 		String name = request.getParameter("nick");
 		String pw = request.getParameter("pw");
 		String intro = request.getParameter("intro");
 		String photo = request.getParameter("photo");
-	
 
+		
+		if(photo.equals("")) {
+			photo = vo.getPhoto();
+		};
 
-		UserVO vo = new UserVO(id,name,pw,intro,photo);
+		UserVO vo2 = new UserVO(id,name,pw,photo,intro);
 		UserDAO dao = UserDAO.getInstance();
 
-		int a = dao.updateInfo(vo);
+		int a = dao.updateInfo(vo2);
 
 
 		return a;
@@ -117,6 +136,12 @@ public class UserServiceImpl implements UserService {
         return list;
     }
 	
-	
+	 public List<BoardVO> getlist2(HttpServletRequest request, HttpServletResponse response) {
+	        
+	        String id = request.getParameter("search_id");
+	        BoardDAO dao = BoardDAO.getInstance();
+	        List<BoardVO> list = dao.getList(id);
+	        return list;
+	    }
 
 }

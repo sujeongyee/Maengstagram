@@ -26,14 +26,14 @@ public class FollowingDAO {
 		return instance;
 	}
 
-	private String url = "jdbc:oracle:thin:@172.30.1.38:1521:xe";
-	private String uid = "JSP";
-	private String upw = "JSP";
+	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String uid = "PRO";
+	private String upw = "PRO";
 
 	// 팔로잉수
 	public int countFollowing(String user_id) {
 
-		String sql = "SELECT COUNT(*) FROM FOLLOWING WHERE USER_ID = ?";
+		String sql = "SELECT COUNT(*) AS COUNT FROM  FOLLOWING WHERE USER_ID = ?";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -69,7 +69,7 @@ public class FollowingDAO {
 	} 
 	// 팔로워수
 	public int countFollower(String fol_id) {
-		String sql = "SELECT COUNT(*) FROM FOLLOWING WHERE FOL_ID = ?";
+		String sql = "SELECT COUNT(*) AS COUNT FROM FOLLOWING WHERE FOL_ID = ?";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -85,9 +85,8 @@ public class FollowingDAO {
 
 			if(rs.next()) {
 				count = rs.getInt("count");
+
 			}
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("팔로우 회원 수 를 가져오는 도중 오류 발생");
@@ -110,7 +109,6 @@ public class FollowingDAO {
 				+ "LEFT JOIN USERS U\r\n"
 				+ "ON F.FOL_ID = U.USER_ID\r\n"
 				+ "WHERE F.USER_ID = ?";
-
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -163,6 +161,7 @@ public class FollowingDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<UserVO> list = new ArrayList<>();
+
 		try {
 
 			conn = DriverManager.getConnection(url,uid,upw);
@@ -196,12 +195,107 @@ public class FollowingDAO {
 		}
 
 		return list;
-
 	}
-	
+
+	public void followPlus(String user_id, String fol_id){
+
+		String sql = "insert into following values (?, ?)";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DriverManager.getConnection(url, uid, upw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, fol_id);
 
 
+			pstmt.executeUpdate();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public void followDelete(String user_id, String fol_id){
+
+		String sql = "DELETE FROM FOLLOWING WHERE USER_ID = ? AND FOL_ID = ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DriverManager.getConnection(url, uid, upw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, fol_id);
+
+			System.out.println(user_id);
+			System.out.println(fol_id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+
+	public int checkFollow(String user_id, String fol_id) {
+
+		String sql = "select * from following  where user_id = ?  and fol_id = ?   ";
+
+		int result = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+
+		try {
+			conn = DriverManager.getConnection(url,uid,upw);
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, fol_id);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) { // 중복
+				result = 1;
+
+			}else {
+				result = 0;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("foll check 도중 오류 발생");
+		} finally {
+
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
+
+			}
+
+		}
+
+		return result;
+	}
 
 
 }

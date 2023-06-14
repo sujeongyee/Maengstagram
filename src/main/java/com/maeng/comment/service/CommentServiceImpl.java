@@ -14,12 +14,22 @@ public class CommentServiceImpl implements CommentService {
 		
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id");
-		String post_num = request.getParameter("post_num");
+		String post_num = request.getParameter("number");
 		String com_content = request.getParameter("comment");
-		System.out.println(post_num); 
+
 		CommentDAO dao = CommentDAO.getInstance();
 		dao.registComment(post_num, user_id, com_content);
 		
+	}
+
+	@Override
+	public int deleteComment(HttpServletRequest request, HttpServletResponse response) {
+		int com_num = Integer.parseInt(request.getParameter("com_num"));
+		CommentDAO dao = CommentDAO.getInstance();
+		int result = dao.deleteComment(com_num);
+		
+		
+		return result;
 	}
 
 

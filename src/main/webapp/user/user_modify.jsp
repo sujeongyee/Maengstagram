@@ -36,11 +36,11 @@
 				<td><input type = "text" name = "nick"  value = "${vo.nick}"></td>
 				</tr>
 				<tr>
-				<td>소개하기:</td>
+				<td>소개하기</td>
 				<td><input type = "text" name = "intro" value = "${vo.intro}"></td>
 				</tr>
 				<br/>
-		</table>
+				</table>
 				프로필 사진 변경하기  ↓           <br/><br/>
 				<div align="center">
 				<input type="file" name="photo" value="프로필사진">

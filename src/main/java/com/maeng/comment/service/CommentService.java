@@ -11,5 +11,7 @@ import com.maeng.comment.model.CommentVO;
 public interface CommentService {
 
 	public void registComment(HttpServletRequest request, HttpServletResponse response);
-
+	
+	public int deleteComment(HttpServletRequest request, HttpServletResponse response);
+	
 }

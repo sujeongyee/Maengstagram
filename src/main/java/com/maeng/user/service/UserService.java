@@ -25,8 +25,11 @@ public interface UserService {
 	int updateInfo(HttpServletRequest request, HttpServletResponse response);
 	
 	UserVO getInfo(HttpServletRequest request, HttpServletResponse response);
-
+	
 	List<BoardVO> getlist(HttpServletRequest request, HttpServletResponse response);
-
+	
+	UserVO getInfo2(HttpServletRequest request, HttpServletResponse response);
+	
+	List<BoardVO> getlist2(HttpServletRequest request, HttpServletResponse response);
 	
 }
