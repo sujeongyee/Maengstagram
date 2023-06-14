@@ -120,8 +120,6 @@ public class BoardServiceImpl implements BoardService{
 
 
 	}
-	
-	
 	// 게시물삭제 1단계
 		@Override
 		public void delLikes(HttpServletRequest request, HttpServletResponse response) {
@@ -146,7 +144,7 @@ public class BoardServiceImpl implements BoardService{
 			dao.delPost(number);
 			System.out.println("postDel 3번 최종삭제 게시물번호 :"+number);
 		}
-
+// 헤이
 
 
 }
