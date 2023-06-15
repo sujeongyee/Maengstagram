@@ -81,6 +81,7 @@ public class BoardDAO {
 			try {
 				conn.close();
 				pstmt.close();
+				rs.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -126,6 +127,7 @@ public class BoardDAO {
 			try {
 				conn.close();
 				pstmt.close();
+				rs.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -168,6 +170,7 @@ public class BoardDAO {
 			try {
 				conn.close();
 				pstmt.close();
+				rs.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

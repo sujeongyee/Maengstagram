@@ -219,6 +219,7 @@ public class FollowingDAO {
 			try {
 				conn.close();
 				pstmt.close();
+				rs.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -231,7 +232,6 @@ public class FollowingDAO {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		try {
 			conn = DriverManager.getConnection(url, uid, upw);
 			pstmt = conn.prepareStatement(sql);

@@ -144,7 +144,7 @@ public class BoardServiceImpl implements BoardService{
 			dao.delPost(number);
 			System.out.println("postDel 3번 최종삭제 게시물번호 :"+number);
 		}
-// 헤이
+// 헤이ㄴ
 
 
 }

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-idth, initial-scale=1">
    
 
-    <title>Welcome to MyWorld</title>
+    <title>Welcome to Maengstagram</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">

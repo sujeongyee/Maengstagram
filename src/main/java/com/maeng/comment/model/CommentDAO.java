@@ -56,6 +56,14 @@ public class CommentDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("댓글 불러오는 도중 오류발생");
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 		}
 		return list;
 	}
