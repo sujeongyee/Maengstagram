@@ -165,5 +165,5 @@
         background-color: #FF1D23;
     }
 </style>
-
+  <%@ include file = "../include/footer.jsp" %>
 </div>

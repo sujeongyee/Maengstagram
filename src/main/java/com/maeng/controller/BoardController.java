@@ -92,8 +92,6 @@ public class BoardController extends HttpServlet {
 
 			// 게시글 페이지로 다시 이동
 			response.sendRedirect("board_content.board?number=" + number);
-
-			// 게시글 삭제
 		} else if (command.equals("/board/likeUpdate.board")) {
 
 
@@ -113,10 +111,13 @@ public class BoardController extends HttpServlet {
 			request.getRequestDispatcher("/board/board_content.board").forward(request, response);
 		} 
 		else if (command.equals("/board/board_delete.board")) {
+			System.out.println("도착은했니?");
 			service.delLikes(request, response);
 			service.delComments(request, response);
 			service.delPost(request, response);
-			response.sendRedirect("../user/user_mypage.user");}
+			response.sendRedirect("../user/user_mypage.user");
+			
+		}
 
 
 

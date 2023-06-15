@@ -50,7 +50,7 @@
                 <div class="no-posts-content">
                     <p>게시물이 없습니다😭<br/>
                         게시물을 작성해보세요.</p>
-                    <a href="../board/board_write.jsp" class="button">버튼</a>
+                    <a href="../board/board_write.jsp" class="button">글쓰기</a>
                 </div>
             </div>
         </c:if>
@@ -157,3 +157,4 @@
 </style>
 
 </div>
+  <%@ include file = "../include/footer.jsp" %>
